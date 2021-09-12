@@ -126,15 +126,12 @@ public class SudokuGrid extends JFrame {
     /** Calls solve slowly */
     public static void callSolve(ActionEvent e) {
         inTransition= true;
-        System.out.println("starting solve");
         clearBoard();
         boolean canSolve= solve();
-        System.out.println("ending solve");
         inTransition= false;
         if (!canSolve) {
             System.out.println("cannot find a solution");
         }
-
     }
 
     /** Prints the current sudoku Array (used mostly for debugging) */
@@ -164,8 +161,6 @@ public class SudokuGrid extends JFrame {
                     grid[r][c].changeValue(sudokuArray[r][c], false);
                 }
             }
-            System.out.println("SOLVED ARRAY 1:");
-            printSudokuArray();
             inTransition= false;
             pauseSquares(false);
         }
@@ -244,7 +239,6 @@ public class SudokuGrid extends JFrame {
                 int val= sudokuArray[r][c];
                 boolean isPermanent= val != 0;
                 grid[r][c]= new SudokuSquare(val, r, c, isPermanent);
-                grid[r][c].addMouseListener(new sudokuListener());
                 row.add(grid[r][c]);
             }
             gridBox.add(row);
